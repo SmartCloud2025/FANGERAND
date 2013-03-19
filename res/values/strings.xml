@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">乐享</string>
+    <string name="text_main">乐享*生活</string>
+    <string name="hello_world">你好，世界</string>
+    <string name="menu_settings">设置</string>
+    <string-array name="main_menu_items">
+        <item >设置</item>
+        <item >更新</item>
+        <item >添加</item>
+        <item >删除</item>
+    </string-array>
+
+</resources>
