@@ -11,17 +11,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import cn.cdu.fanger.ac.view.AbstractAsyncActivity;
+import cn.cdu.fanger.ac.view.AbstractMenuActivity;
 import cn.cdu.fanger.constant.ServerUrl;
 import cn.cdu.fanger.rest.entity.AndrUser;
 
-public class RestActivity extends AbstractAsyncActivity{
+public class RestActivity extends AbstractMenuActivity{
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreateMethod() {
 		setContentView(R.layout.rest_test_main);
 
 		// Initiate the JSON POST request when the JSON button is clicked
@@ -33,7 +35,43 @@ public class RestActivity extends AbstractAsyncActivity{
 		});
 	}
 	
+	@Override
+	protected String[] getMenuNameArray() {
+		return new String[]{"添加新户", "添加新人", "设置", "同步","下载"};
+	}
+
+	@Override
+	protected int[] getMenuResourceArray() {
+		return new int[]{ R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher };
+	}
+
+	@Override
+	protected void handleMenuItemClick(AdapterView<?> parent, View children,
+			int position, long id) {
+		switch (position) {
+		case 0:
+			Toast.makeText(this, "现在处理正在处理同步的逻辑", Toast.LENGTH_SHORT).show();
+			break;
+		case 1:
+			Toast.makeText(this, "现在处理正在处理同步的逻辑", Toast.LENGTH_SHORT).show();
+			break;
+		case 2:
+			Toast.makeText(this, "现在处理正在处理同步的逻辑", Toast.LENGTH_SHORT).show();
+			break;
+		case 3:
+			Toast.makeText(this, "现在处理正在处理同步的逻辑", Toast.LENGTH_SHORT).show();
+			break;
+		case 4:
+			Toast.makeText(this, "现在处理正在处理同步的逻辑", Toast.LENGTH_SHORT).show();
+			break;
+		default:
+			break;
+		}
+	}
 	
+	//******************************************
+	//Spring data
+	//******************************************
 	private class PostMessageTask extends AsyncTask<Void, Void, AndrUser> {
 		private MultiValueMap<String, String> message;
 		//执行前

@@ -1,22 +1,20 @@
 package cn.cdu.fanger.activity;
 
 
+import cn.cdu.fanger.ac.view.AbstractAsyncListActivity;
 import cn.cdu.fanger.ac.view.AbstractMenuActivity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 
-public class MainActivity extends AbstractMenuActivity {
+public class MainActivity extends AbstractAsyncListActivity {
 	protected static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	protected String getDescription() {
 		return getResources().getString(R.string.text_main);
-	}
-
-	@Override
-	protected String[] getMenuItems() {
-		return getResources().getStringArray(R.array.main_menu_items);
 	}
 
 	@Override
@@ -27,6 +25,9 @@ public class MainActivity extends AbstractMenuActivity {
 					long id) {
 				Class<?> clazz = null;
 				switch (position) {
+				case 0:
+					clazz=RestActivity.class;
+					break;
 				case 1:
 					clazz=RestActivity.class;
 					break;
@@ -36,9 +37,6 @@ public class MainActivity extends AbstractMenuActivity {
 				case 3:
 					clazz=RestActivity.class;
 					break;
-				case 4:
-					clazz=RestActivity.class;
-					break;
 
 				default:
 					break;
@@ -46,6 +44,11 @@ public class MainActivity extends AbstractMenuActivity {
 				startActivity(new Intent(parent.getContext(), clazz));//转到请求页面
 			}
 		};
+	}
+
+	@Override
+	protected ListAdapter getListAdapter() {
+		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.main_menu_items));
 	}
 
 }
