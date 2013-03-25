@@ -72,12 +72,13 @@ public class RestActivity extends AbstractMenuActivity{
 	//******************************************
 	//Spring data
 	//******************************************
-	private class PostMessageTask extends AsyncTask<Void, Void, AndrUser> {
+	private class PostMessageTask extends AsyncTask<Void, Void, String> {
 		private MultiValueMap<String, String> message;
 		//执行前
 		@Override
 		protected void onPreExecute() {
 			showLoadingProgressDialog();
+			
 			// assemble the map
 			message = new LinkedMultiValueMap<String, String>();
 
@@ -90,13 +91,13 @@ public class RestActivity extends AbstractMenuActivity{
 		}
 		//后台执行
 		@Override
-		protected AndrUser doInBackground(Void... params) {
+		protected String doInBackground(Void... params) {
 			try{
 				// Create a new RestTemplate instance
 				RestTemplate restTemplate = new RestTemplate(true);
 				restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 				// Make the network request, posting the message, expecting a String in response from the server
-				ResponseEntity<AndrUser> response = restTemplate.postForEntity(ServerUrl.userList, HttpMethod.GET, AndrUser.class);
+				ResponseEntity<String> response = restTemplate.postForEntity(ServerUrl.userLogin, message, String.class);
 				// Return the response body to display to the user
 				return response.getBody();
 			}catch (Exception e) {
@@ -106,7 +107,7 @@ public class RestActivity extends AbstractMenuActivity{
 		}
 		//执行后
 		@Override
-		protected void onPostExecute(AndrUser result) {
+		protected void onPostExecute(String result) {
 			dismissProgressDialog();
 			showResult(result);
 		}
@@ -114,10 +115,10 @@ public class RestActivity extends AbstractMenuActivity{
 		
 	}
 	
-	private void showResult(AndrUser result) {
+	private void showResult(String result) {
 		if (result != null) {
 			// display a notification to the user with the response message
-			Toast.makeText(this, result.getEmail(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();
 		}

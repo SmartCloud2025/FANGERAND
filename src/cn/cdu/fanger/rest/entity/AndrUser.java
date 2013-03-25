@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 import cn.cdu.fanger.utill.Gender;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root
 public class AndrUser implements Serializable{
 	private static final long serialVersionUID = 3209182876694283259L;
-	
+	@Element
 	private Integer id;
 	private String name;
 	private String email;

@@ -27,6 +27,7 @@
         
         <activity android:name="cn.cdu.fanger.activity.RestActivity" />
         <activity android:name="cn.cdu.fanger.activity.MainActivity" />
+        <activity android:name="cn.cdu.fanger.activity.HttpGetJsonActivity" />
     </application>
 	
 </manifest>
