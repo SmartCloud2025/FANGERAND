@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-/**
- */
 public class AndrSpotsListAdapter extends BaseAdapter {
 
 	private List<AndrSpot> AndrSpots;
@@ -49,7 +47,6 @@ public class AndrSpotsListAdapter extends BaseAdapter {
 			TextView info = (TextView) convertView.findViewById(R.id.main_list_item_title);
 			info.setText(andrSpot.getSummary());
 			
-//			TODO
 //			ImageView img = (ImageView) convertView.findViewById(R.id.main_list_item_img);
 //			
 		}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<!-- 底部菜单栏 -->
+		 <RelativeLayout
+		
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bottom_backgroud"
+            android:layout_alignParentBottom="true">
+            <Button 
+                android:id="@+id/button_conditionsearch"
+                android:layout_width="64dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/control_conditionsearch"
+                />
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerHorizontal="true"
+                android:text="上传提示"
+                android:gravity="center"
+                android:textSize="24sp"
+                />
+            <Button 
+                android:id="@+id/button_back"
+                android:layout_width="64dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/control_back"
+                />
+        </RelativeLayout>
+<!--  底部菜单栏结束 -->
+    
+
+</RelativeLayout>

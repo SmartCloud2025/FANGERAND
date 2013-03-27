@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <item type="id" name="ivItemPortrait">false</item>
+    <item type="id" name="tvItemName">false</item>
+    <item type="id" name="ivItemV">false</item>
+    <item type="id" name="ivItemPic">false</item>
+    <item type="id" name="tvItemDate">false</item>
+    <item type="id" name="tvItemContent">false</item>
+    <item type="id" name="subLayout">false</item>
+    <item type="id" name="tvItemSubContent">false</item>
+    <item type="id" name="ivItemPicture">false</item>
+    <item type="id" name="ivcontentPic">false</item>
+    <item type="id" name="lyRightLayout">false</item>
+    
+    
+    
+    <item type="drawable" name="widget_edit_block_bg_normal">@android:color/transparent</item>
+    
+</resources>

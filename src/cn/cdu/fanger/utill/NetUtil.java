@@ -59,18 +59,17 @@ public static boolean checkNet(Context context){
 		}
 		return tag;
 	} 
-//浠巙rl鑾峰彇涓�釜鍥剧墖
+
+	@SuppressWarnings("deprecation")
 	public static BitmapDrawable getImageFromUrl(URL url){
-		BitmapDrawable map = null;
+		BitmapDrawable bmap = null;
 		try {
 			HttpURLConnection hc = (HttpURLConnection) url.openConnection();
-			
-			map = new BitmapDrawable(hc.getInputStream());
+			bmap = new BitmapDrawable(hc.getInputStream());
 			hc.disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return map;
+		return bmap;
 	}
 }

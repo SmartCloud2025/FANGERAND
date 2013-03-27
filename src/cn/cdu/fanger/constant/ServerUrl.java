@@ -7,6 +7,6 @@ public class ServerUrl {
 	public final static String userList = baseUrl + "/AnrUser/list";
 	public final static String userLogin = baseUrl + "/AnrUser/login";
 	
-	public final static String spotList = baseUrl + "/spot/list/1,3";
+	public final static String spotList = baseUrl + "/spot/list/";//{startPosition},{maxResult}
 	
 }

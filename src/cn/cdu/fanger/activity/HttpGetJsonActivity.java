@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import cn.cdu.fanger.ac.view.AbstractAsyncListActivity;
 import cn.cdu.fanger.constant.ServerUrl;
 import cn.cdu.fanger.rest.entity.AndrSpot;
@@ -98,4 +100,11 @@ public class HttpGetJsonActivity extends AbstractAsyncListActivity {
 				refreshStates(result);
 			}
 		}
+
+		@Override
+		protected void onListItemClick(ListView l, View v, int position, long id) {
+			
+		}
+		
+		
 }

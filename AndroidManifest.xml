@@ -25,9 +25,15 @@
             </intent-filter>
         </activity>
         
+        <activity android:name="cn.cdu.fanger.activity.ListMainActivity" />
         <activity android:name="cn.cdu.fanger.activity.RestActivity" />
         <activity android:name="cn.cdu.fanger.activity.MainActivity" />
         <activity android:name="cn.cdu.fanger.activity.HttpGetJsonActivity" />
+        
+        <service android:name="cn.cdu.fanger.ac.view.SpotsService" />
     </application>
 	
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+          android:targetPackage="cn.cdu.fanger.utill"
+          android:label="Mytests" />
 </manifest>

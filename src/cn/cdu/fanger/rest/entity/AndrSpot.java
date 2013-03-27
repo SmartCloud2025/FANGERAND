@@ -9,6 +9,18 @@ import org.simpleframework.xml.Root;
 @Root
 public class AndrSpot implements Serializable{
 	@Element
+	private Integer id;
+	@Element
+	private String createAt;
+	@Element
+	private String createBy;
+	@Element
+	private String createByResources;
+	
+	
+	
+	
+	@Element
 	private String imageUrl;
 	@Element
 	private String category;
@@ -23,9 +35,9 @@ public class AndrSpot implements Serializable{
 	@Element
 	private String city;
 	@Element
-	private Double lat;//¾­Î³¶È
+	private Double lat;//ï¿½ï¿½Î³ï¿½ï¿½
 	@Element
-	private Double lng;//¾­Î³¶È
+	private Double lng;//ï¿½ï¿½Î³ï¿½ï¿½
 	@Element
 	private int commentsCount;
 	@Element
@@ -143,5 +155,29 @@ public class AndrSpot implements Serializable{
 	}
 	public void setDownloadCount(int downloadCount) {
 		this.downloadCount = downloadCount;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCreateAt() {
+		return createAt;
+	}
+	public void setCreateAt(String createAt) {
+		this.createAt = createAt;
+	}
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public String getCreateByResources() {
+		return createByResources;
+	}
+	public void setCreateByResources(String createByResources) {
+		this.createByResources = createByResources;
 	}
 }

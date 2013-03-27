@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import cn.cdu.fanger.ac.view.AbstractAsyncActivity;
+import cn.cdu.fanger.ac.view.SpotsService;
 import cn.cdu.fanger.constant.ServerUrl;
 
 public class LoginActivity extends AbstractAsyncActivity {
@@ -85,13 +86,21 @@ public class LoginActivity extends AbstractAsyncActivity {
 
 	private void showResult(String result) {
 		// && result.trim().equals("SUCCESS")
+		startSpotService();
 		if (result != null) {
 			// display a notification to the user with the response message
 			Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 			// go to main page
-			startActivity(new Intent(LoginActivity.this, HttpGetJsonActivity.class));
+			startActivity(new Intent(LoginActivity.this, ListMainActivity.class));
 		} else {
 			Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();
 		}	
+	}
+	
+	
+	private void startSpotService(){
+		SpotsService.isRunning = true;
+		Intent it = new Intent(this, SpotsService.class);
+		this.startService(it);
 	}
 }

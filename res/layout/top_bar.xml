@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<!-- 搜索栏开始 -->
+     <RelativeLayout
+            android:id="@+id/includes"
+            android:layout_width="fill_parent"
+            android:layout_height="43dp"
+            android:background="@drawable/top_backgroud" >
+
+         
+            <Button 
+                android:id="@+id/main_button_search_type"
+                android:layout_width="31.3dp"
+                android:layout_height="25.3dp"
+                android:layout_marginLeft="7dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/control_searchtype"
+                />
+            <EditText
+                android:id="@+id/main_edit_search"
+                android:layout_width="270dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="43dp"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/top_search_bar" />
+
+            <Button
+                android:id="@+id/button_searchok"
+                android:layout_width="31.3dp"
+                android:layout_height="25.3dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/control_searchok" />
+        </RelativeLayout>
+    
+<!-- 搜索栏结束 -->
+</RelativeLayout>

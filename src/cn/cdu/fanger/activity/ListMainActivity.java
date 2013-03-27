@@ -1,0 +1,71 @@
+package cn.cdu.fanger.activity;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.widget.ListView;
+import cn.cdu.fanger.ac.view.IBaseActivity;
+import cn.cdu.fanger.ac.view.IMenuActivity;
+import cn.cdu.fanger.ac.view.SpotsService;
+import cn.cdu.fanger.constant.Task;
+import cn.cdu.fanger.rest.entity.AndrSpot;
+import cn.cdu.fanger.view.adpter.SpotsAdpter;
+
+public class ListMainActivity extends IMenuActivity implements IBaseActivity{
+	public final static int FRESH_SPOT_DATA = 1;
+	public final static int FRESH_ADDMORE_DATA = 2;
+	public final static int FRESH_ICON_DATA = 3;
+	
+	ListView listView;
+	int pageSize=1,pageNow=3;
+	@Override
+	protected void onCreateMethod() {
+		setContentView(R.layout.activity_main_list);
+		listView = (ListView) findViewById(R.id.main_listview);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		init();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	public void init() {
+		//release a task
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("pagenow", (Integer) pageNow);
+		map.put("pagesize", (Integer) pageSize);
+		
+		Task task = new Task(Task.GET_SPOT_LIST, map);
+		SpotsService.newTask(task);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void refresh(Object... param) {
+		//handle the result
+		int type = ((Integer) (param[0])).intValue();
+		List<AndrSpot> resultData = (List<AndrSpot>) param[1];
+		switch (type) {
+		case FRESH_SPOT_DATA:
+			SpotsAdpter adpter = new SpotsAdpter(this,resultData);
+			listView.setAdapter(adpter);
+			break;
+		case FRESH_ADDMORE_DATA:
+			((SpotsAdpter)listView.getAdapter()).addMoreData(resultData);
+			break;
+		case FRESH_ICON_DATA:
+			((SpotsAdpter)listView.getAdapter()).notifyDataSetChanged();
+			break;
+		default:
+			break;
+		}
+	}
+}
