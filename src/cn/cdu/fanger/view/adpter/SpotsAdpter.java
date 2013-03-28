@@ -23,12 +23,12 @@ public class SpotsAdpter extends BaseAdapter {
 	}
 
 	public int getCount() {
-		return allList.size() + 1;
+		return allList.size()+1;
 	}
 
 	public long getItemId(int index) {
-		if (index >= 0 && (index < this.getCount() - 1)) {
-			return allList.get(index - 1).getId();// 如果用户选中了中间项
+		if (index >= 0 && (index <= this.getCount() - 2)) {
+			return allList.get(index).getId();// 如果用户选中了中间项
 		} else {
 			return -1;// 表示用户选中最后一项
 		}
@@ -62,7 +62,7 @@ public class SpotsAdpter extends BaseAdapter {
 	
 	//中间项的显示
 	private View showView(View spotsView,int position, View convertView, ViewGroup parent){
-		LayoutInflater.from(context).inflate(R.layout.activity_main_list_item, null);
+		spotsView = LayoutInflater.from(context).inflate(R.layout.activity_main_list_item, null);
 		// 设定这个条目显示的内容
 		ListViewHolder holder = null;
 		holder = new ListViewHolder();
@@ -81,18 +81,18 @@ public class SpotsAdpter extends BaseAdapter {
 		////////////////////////////////////////
 		
 		// 设定昵称
-		holder.tvItemName.setText(allList.get(position - 1).getCreateBy());
+		holder.tvItemName.setText(allList.get(position).getCreateBy());
 		// 设定内容
-		holder.tvItemContent.setText(allList.get(position - 1).getSummary());
+		holder.tvItemContent.setText(allList.get(position).getSummary());
 		//时间
-		holder.tvItemDate.setText(allList.get(position - 1).getCreateAt());
+		holder.tvItemDate.setText(allList.get(position).getCreateAt());
 		
 		//TODO 图片设置
-		if (SpotsService.alluserIcon.get(allList.get(position - 1).getId()) != null) {
-			holder.ivItemPortrait.setImageDrawable(SpotsService.alluserIcon.get(allList.get(position - 1).getId()));
+		if (SpotsService.alluserIcon.get(allList.get(position).getId()) != null) {
+			holder.ivItemPortrait.setImageDrawable(SpotsService.alluserIcon.get(allList.get(position).getId()));
 		}
-		if (SpotsService.allspotIcon.get(allList.get(position - 1).getId()) != null) {
-			holder.contentPic.setImageDrawable(SpotsService.allspotIcon.get(allList.get(position - 1).getId()));
+		if (SpotsService.allspotIcon.get(allList.get(position).getId()) != null) {
+			holder.contentPic.setImageDrawable(SpotsService.allspotIcon.get(allList.get(position).getId()));
 		}
 		
 		return spotsView;

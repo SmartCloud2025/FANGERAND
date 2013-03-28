@@ -6,7 +6,10 @@ import android.os.Handler;
 import android.os.Message;
 
 public class SpotsHandler extends Handler {
+	protected static final String TAG = SpotsHandler.class.getSimpleName();
+
 	static IBaseActivity resultAc;
+	
 	@Override
 	public void handleMessage(Message msg) {
 		super.handleMessage(msg);

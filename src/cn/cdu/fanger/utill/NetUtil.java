@@ -62,6 +62,7 @@ public static boolean checkNet(Context context){
 
 	@SuppressWarnings("deprecation")
 	public static BitmapDrawable getImageFromUrl(URL url){
+		System.out.println("***--->"+url);
 		BitmapDrawable bmap = null;
 		try {
 			HttpURLConnection hc = (HttpURLConnection) url.openConnection();

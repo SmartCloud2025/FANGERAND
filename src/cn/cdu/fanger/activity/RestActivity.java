@@ -1,6 +1,5 @@
 package cn.cdu.fanger.activity;
 
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
@@ -8,17 +7,14 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import cn.cdu.fanger.ac.view.AbstractAsyncActivity;
 import cn.cdu.fanger.ac.view.AbstractMenuActivity;
 import cn.cdu.fanger.constant.ServerUrl;
-import cn.cdu.fanger.rest.entity.AndrUser;
 
 public class RestActivity extends AbstractMenuActivity{
 
@@ -37,7 +33,7 @@ public class RestActivity extends AbstractMenuActivity{
 	
 	@Override
 	protected String[] getMenuNameArray() {
-		return new String[]{"Ìí¼ÓÐÂ»§", "Ìí¼ÓÐÂÈË", "ÉèÖÃ", "Í¬²½","ÏÂÔØ"};
+		return new String[]{"ï¿½ï¿½ï¿½ï¿½Â»ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "Í¬ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½"};
 	}
 
 	@Override
@@ -50,19 +46,19 @@ public class RestActivity extends AbstractMenuActivity{
 			int position, long id) {
 		switch (position) {
 		case 0:
-			Toast.makeText(this, "ÏÖÔÚ´¦ÀíÕýÔÚ´¦ÀíÍ¬²½µÄÂß¼­", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½", Toast.LENGTH_SHORT).show();
 			break;
 		case 1:
-			Toast.makeText(this, "ÏÖÔÚ´¦ÀíÕýÔÚ´¦ÀíÍ¬²½µÄÂß¼­", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½", Toast.LENGTH_SHORT).show();
 			break;
 		case 2:
-			Toast.makeText(this, "ÏÖÔÚ´¦ÀíÕýÔÚ´¦ÀíÍ¬²½µÄÂß¼­", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½", Toast.LENGTH_SHORT).show();
 			break;
 		case 3:
-			Toast.makeText(this, "ÏÖÔÚ´¦ÀíÕýÔÚ´¦ÀíÍ¬²½µÄÂß¼­", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½", Toast.LENGTH_SHORT).show();
 			break;
 		case 4:
-			Toast.makeText(this, "ÏÖÔÚ´¦ÀíÕýÔÚ´¦ÀíÍ¬²½µÄÂß¼­", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½", Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;
@@ -74,7 +70,7 @@ public class RestActivity extends AbstractMenuActivity{
 	//******************************************
 	private class PostMessageTask extends AsyncTask<Void, Void, String> {
 		private MultiValueMap<String, String> message;
-		//Ö´ÐÐÇ°
+		//Ö´ï¿½ï¿½Ç°
 		@Override
 		protected void onPreExecute() {
 			showLoadingProgressDialog();
@@ -89,7 +85,7 @@ public class RestActivity extends AbstractMenuActivity{
 			message.add("pwd", editText.getText().toString());
 
 		}
-		//ºóÌ¨Ö´ÐÐ
+		//ï¿½ï¿½Ì¨Ö´ï¿½ï¿½
 		@Override
 		protected String doInBackground(Void... params) {
 			try{
@@ -105,7 +101,7 @@ public class RestActivity extends AbstractMenuActivity{
 			}
 			return null;
 		}
-		//Ö´ÐÐºó
+		//Ö´ï¿½Ðºï¿½
 		@Override
 		protected void onPostExecute(String result) {
 			dismissProgressDialog();

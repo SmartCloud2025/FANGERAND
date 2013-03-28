@@ -96,7 +96,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4.0dip"
             android:background="@drawable/popup"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <!-- 回复 -->
             <TextView

@@ -20,6 +20,7 @@ import cn.cdu.fanger.constant.Task;
 import cn.cdu.fanger.rest.entity.AndrSpot;
 import cn.cdu.fanger.utill.NetUtil;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import android.os.Message;
 import android.util.Log;
 
 
+@SuppressLint("UseSparseArrays")
 public class SpotsService extends Service implements Runnable{
 	protected static final String TAG = SpotsService.class.getSimpleName();
 
@@ -82,7 +84,7 @@ public class SpotsService extends Service implements Runnable{
 						// convert the array to a list and return it
 						List<AndrSpot> resultData = Arrays.asList(responseEntity.getBody());
 						
-						//请求图片
+						//get Icon
 						this.publishGetIcon(resultData);
 						
 						msg.obj = resultData;
@@ -91,21 +93,21 @@ public class SpotsService extends Service implements Runnable{
 					}
 					break;
 				case Task.GET_SPOT_ITEM_IMG:
-					// 获取用户id
+					//get id
 					int sid = (Integer) task.getTaskParam().get("uid");
-					// 获取用户头像
-					URL u = new URL((String) task.getTaskParam().get("url"));
+					// get spot resource
+					URL u = new URL(ServerUrl.appUrl + task.getTaskParam().get("url"));
 					BitmapDrawable bd = NetUtil.getImageFromUrl(u);
-					// 添加图片到用户头像集合
+					// add to list
 					alluserIcon.put(sid, bd);
 					break;
 				case Task.GET_SPOT_ITEM_CREATBY_IMG:
-					// 获取用户id
+					// get id
 					int ssid = (Integer) task.getTaskParam().get("uid");
-					// 获取用户头像
-					URL url = new URL((String) task.getTaskParam().get("url"));
+					// get port 
+					URL url = new URL(ServerUrl.appUrl + task.getTaskParam().get("url"));
 					BitmapDrawable bmd = NetUtil.getImageFromUrl(url);
-					// 添加图片到用户头像集合
+					
 					allspotIcon.put(ssid, bmd);
 					break;	
 				default:
@@ -150,7 +152,7 @@ public class SpotsService extends Service implements Runnable{
 		isRunning = false;
 	}
 	
-	// 娣诲姞涓�釜浠诲�?
+	// add a new task
 	public static void newTask(Task task) {
 		allTask.add(task);
 	}

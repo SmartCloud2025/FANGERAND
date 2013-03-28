@@ -18,11 +18,12 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 	public final static int FRESH_ICON_DATA = 3;
 	
 	ListView listView;
-	int pageSize=1,pageNow=3;
+	int pageSize=3,pageNow=1;
 	@Override
 	protected void onCreateMethod() {
 		setContentView(R.layout.activity_main_list);
 		listView = (ListView) findViewById(R.id.main_listview);
+		SpotsService.allActivity.add(this);//put the current install to service
 	}
 	
 	@Override
@@ -45,20 +46,24 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 		
 		Task task = new Task(Task.GET_SPOT_LIST, map);
 		SpotsService.newTask(task);
+		this.showLoadingProgressDialog();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void refresh(Object... param) {
+		this.dismissProgressDialog();
 		//handle the result
 		int type = ((Integer) (param[0])).intValue();
-		List<AndrSpot> resultData = (List<AndrSpot>) param[1];
+		List<AndrSpot> resultData = null;
 		switch (type) {
 		case FRESH_SPOT_DATA:
+			resultData = (List<AndrSpot>) param[1];
 			SpotsAdpter adpter = new SpotsAdpter(this,resultData);
 			listView.setAdapter(adpter);
 			break;
 		case FRESH_ADDMORE_DATA:
+			resultData = (List<AndrSpot>) param[1];
 			((SpotsAdpter)listView.getAdapter()).addMoreData(resultData);
 			break;
 		case FRESH_ICON_DATA:
