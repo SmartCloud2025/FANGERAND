@@ -4,9 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="8"/>
 	
      <uses-permission android:name="android.permission.INTERNET" />
     
@@ -23,17 +21,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
         </activity>
         
         <activity android:name="cn.cdu.fanger.activity.ListMainActivity" />
+        <activity android:name="cn.cdu.fanger.activity.MapMainActivity" />
         <activity android:name="cn.cdu.fanger.activity.RestActivity" />
-        <activity android:name="cn.cdu.fanger.activity.MainActivity" />
         <activity android:name="cn.cdu.fanger.activity.HttpGetJsonActivity" />
         
+        
         <service android:name="cn.cdu.fanger.ac.view.SpotsService" />
+        <!-- 使用gmap -->
+        <uses-library android:name="com.google.android.maps" />
     </application>
 	
-    <instrumentation android:name="android.test.InstrumentationTestRunner"
-          android:targetPackage="cn.cdu.fanger.utill"
-          android:label="Mytests" />
 </manifest>

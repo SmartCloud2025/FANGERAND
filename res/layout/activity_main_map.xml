@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f6f6f6"
+    android:orientation="vertical" >
+
+    <!-- 搜索栏 -->
+
+    <include
+        android:id="@+id/map_top_view"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        layout="@layout/top_bar" />
+    
+    <!-- 搜索栏结束 -->
+	<com.google.android.maps.MapView
+	    android:id="@+id/MapView01"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:apiKey="015vEEubzZptUF_UCn2P4hKHDP76Oe-62vnOyjQ"/>
+	
+</LinearLayout>

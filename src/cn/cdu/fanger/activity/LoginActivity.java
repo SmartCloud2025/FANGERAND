@@ -42,8 +42,8 @@ public class LoginActivity extends AbstractAsyncActivity {
 		loginbtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				new LoginPostMessageTask().execute();
-				//showResult("---");
+				//new LoginPostMessageTask().execute();
+				showResult("---");
 			}
 		});
 	}
@@ -91,7 +91,9 @@ public class LoginActivity extends AbstractAsyncActivity {
 			// display a notification to the user with the response message
 			Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 			// go to main page
-			startActivity(new Intent(LoginActivity.this, ListMainActivity.class));
+			
+			startActivity(new Intent(LoginActivity.this, MapMainActivity.class));//ListMainActivity
+			
 		} else {
 			Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();
 		}	
