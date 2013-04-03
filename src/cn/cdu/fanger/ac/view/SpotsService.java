@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import cn.cdu.fanger.activity.R;
 import cn.cdu.fanger.constant.ServerUrl;
 import cn.cdu.fanger.constant.Task;
 import cn.cdu.fanger.rest.entity.AndrSpot;
@@ -22,12 +23,17 @@ import cn.cdu.fanger.utill.NetUtil;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Service;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
 
 @SuppressLint("UseSparseArrays")
@@ -196,5 +202,37 @@ public class SpotsService extends Service implements Runnable{
 			Log.e(TAG, e.getMessage(),e);
 		}
 		return null;
+	}
+	
+	
+	///////////////////////////////////
+	//======退出程序
+	///////////////////////////////////
+	public static void exitApp(Activity context) {// 退出所有Activity
+		for (int i = 0; i < allActivity.size(); i++) {
+			((Activity) allActivity.get(i)).finish();
+		}
+		allActivity.clear();
+		// 退出Service
+		context.stopService(new Intent("cn.cdu.fanger.ac.view.SpotsService"));
+	}
+
+	// 提示是否退出应用程序
+	public static void promptExitApp(final Activity context) {
+		// 创建对话框
+		AlertDialog.Builder ab = new AlertDialog.Builder(context);
+		LayoutInflater li = LayoutInflater.from(context);
+		View msgview = li.inflate(R.layout.exit_dialog, null);
+		ab.setView(msgview);
+		// 设定对话框显示的内容
+		ab.setPositiveButton("确定退出", new OnClickListener() {
+			public void onClick(DialogInterface dv, int id) {
+				// TODO Auto-generated method stub
+				dv.dismiss();
+				exitApp(context);// 退出整个应用
+			}
+		});
+		ab.setNegativeButton("返回", null);
+		ab.show();
 	}
 }

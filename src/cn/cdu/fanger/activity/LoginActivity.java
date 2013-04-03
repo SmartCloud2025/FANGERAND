@@ -22,12 +22,13 @@ import cn.cdu.fanger.constant.ServerUrl;
 public class LoginActivity extends AbstractAsyncActivity {
 	private EditText username;
 	private EditText userpwd;
-	private Button loginbtn;
+	private Button loginbtn,exitbtn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		SpotsService.allActivity.add(this);
 		bindComponents();
 		addListener();
 	}
@@ -36,6 +37,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 		username = (EditText) findViewById(R.id.login_username);
 		userpwd = (EditText) findViewById(R.id.login_password);
 		loginbtn = (Button) findViewById(R.id.login_submit);
+		exitbtn = (Button) findViewById(R.id.login_exit);
 	}
 
 	private void addListener() {
@@ -44,6 +46,13 @@ public class LoginActivity extends AbstractAsyncActivity {
 			public void onClick(View view) {
 				//new LoginPostMessageTask().execute();
 				showResult("---");
+			}
+		});
+		exitbtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				SpotsService.promptExitApp(LoginActivity.this);
 			}
 		});
 	}

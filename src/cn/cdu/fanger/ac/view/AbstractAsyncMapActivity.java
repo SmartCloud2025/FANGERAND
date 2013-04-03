@@ -3,6 +3,7 @@ package cn.cdu.fanger.ac.view;
 import com.google.android.maps.MapActivity;
 
 import android.app.ProgressDialog;
+import android.view.KeyEvent;
 
 public class AbstractAsyncMapActivity extends MapActivity implements AsyncActivity {
 
@@ -50,4 +51,13 @@ public class AbstractAsyncMapActivity extends MapActivity implements AsyncActivi
 		return false;
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			SpotsService.promptExitApp(this);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

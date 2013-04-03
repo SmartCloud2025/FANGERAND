@@ -2,6 +2,7 @@ package cn.cdu.fanger.ac.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.view.KeyEvent;
 
 
 /**
@@ -48,5 +49,13 @@ public abstract class AbstractAsyncActivity extends Activity implements AsyncAct
 			this.progressDialog.dismiss();
 		}
 	}
-
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			SpotsService.promptExitApp(this);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }
