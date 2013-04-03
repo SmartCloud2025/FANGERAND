@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import cn.cdu.fanger.ac.view.IBaseActivity;
 import cn.cdu.fanger.ac.view.IMenuActivity;
@@ -19,11 +23,17 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 	
 	ListView listView;
 	int pageSize=3,pageNow=1;
+	private Button swithBtn;
+	
 	@Override
 	protected void onCreateMethod() {
 		setContentView(R.layout.activity_main_list);
 		listView = (ListView) findViewById(R.id.main_listview);
 		SpotsService.allActivity.add(this);//put the current install to service
+		
+		View topBar = findViewById(R.id.list_top_view);
+		swithBtn = (Button) topBar.findViewById(R.id.main_button_switch);
+		addListener();
 	}
 	
 	@Override
@@ -72,5 +82,15 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 		default:
 			break;
 		}
+	}
+	
+	
+	private void addListener(){
+		swithBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(ListMainActivity.this, MapMainActivity.class));
+			}
+		});
 	}
 }

@@ -10,6 +10,10 @@ public class Task {
 	public static final int GET_SPOT_ITEM_IMG = 2;//获取spot图片
 	public static final int GET_SPOT_ITEM_CREATBY_IMG = 3;//获取spot创建人头像
 	
+	public static final int GET_MAP_SPOT_LIST = 4;
+	public static final int GET_MAP_SPOT_ITEM_IMG = 5;
+	public static final int GET_MAP_SPOT_ITEM_CREATEBY_IMG = 6;
+	
 	public Task(int id, Map<String,Object> param) {
 		this.taskID = id;
 		this.taskParam = param;

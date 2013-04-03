@@ -48,6 +48,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 		});
 	}
 
+	@SuppressWarnings("unused")
 	private class LoginPostMessageTask extends AsyncTask<Void, Void, String> {
 		
 		private MultiValueMap<String, String> message;

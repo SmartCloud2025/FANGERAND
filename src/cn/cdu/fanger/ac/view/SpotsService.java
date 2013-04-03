@@ -58,39 +58,9 @@ public class SpotsService extends Service implements Runnable{
 		try {
 			switch (task.getTaskID()) {
 				case Task.GET_SPOT_LIST:
-					int pageNow = (Integer) task.getTaskParam().get("pagenow");
-					int pageSize = (Integer) task.getTaskParam().get("pagesize");
-					try{
-						String url = ServerUrl.spotList+pageNow+","+pageSize;
-						
-						System.out.println("---"+url);
-						
-						// Set the Accept header for "application/json"
-						HttpHeaders requestHeaders = new HttpHeaders();
-						List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
-						acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
-						requestHeaders.setAccept(acceptableMediaTypes);
-
-						// Populate the headers in an HttpEntity object to use for the request
-						HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
-
-						// Create a new RestTemplate instance
-						RestTemplate restTemplate = new RestTemplate();
-						restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-						// Perform the HTTP GET request
-						ResponseEntity<AndrSpot[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
-								AndrSpot[].class);
-						// convert the array to a list and return it
-						List<AndrSpot> resultData = Arrays.asList(responseEntity.getBody());
-						
-						//get Icon
-						this.publishGetIcon(resultData);
-						
-						msg.obj = resultData;
-					}catch (Exception e) {
-						Log.e(TAG, e.getMessage(),e);
-					}
+					List<AndrSpot> resultData = this.requestSpots(task);
+					this.publishGetIcon(resultData);
+					msg.obj = resultData;
 					break;
 				case Task.GET_SPOT_ITEM_IMG:
 					//get id
@@ -110,6 +80,10 @@ public class SpotsService extends Service implements Runnable{
 					
 					allspotIcon.put(ssid, bmd);
 					break;	
+				case Task.GET_MAP_SPOT_LIST:
+					//TODO
+					msg.obj = this.requestSpots(task);
+					break;
 				default:
 					break;
 			}
@@ -186,5 +160,41 @@ public class SpotsService extends Service implements Runnable{
 				SpotsService.newTask(t);
 			}
 		}
+	}
+	
+	private List<AndrSpot> requestSpots(Task task){
+		int pageNow = (Integer) task.getTaskParam().get("pagenow");
+		int pageSize = (Integer) task.getTaskParam().get("pagesize");
+		try{
+			String url = ServerUrl.spotList+pageNow+","+pageSize;
+			
+			System.out.println("---"+url);
+			
+			// Set the Accept header for "application/json"
+			HttpHeaders requestHeaders = new HttpHeaders();
+			List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+			acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
+			requestHeaders.setAccept(acceptableMediaTypes);
+
+			// Populate the headers in an HttpEntity object to use for the request
+			HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
+
+			// Create a new RestTemplate instance
+			RestTemplate restTemplate = new RestTemplate();
+			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+			// Perform the HTTP GET request
+			ResponseEntity<AndrSpot[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
+					AndrSpot[].class);
+			// convert the array to a list and return it
+			List<AndrSpot> resultData = Arrays.asList(responseEntity.getBody());
+			
+			//get Icon
+			//this.publishGetIcon(resultData);
+			return resultData;
+		}catch (Exception e) {
+			Log.e(TAG, e.getMessage(),e);
+		}
+		return null;
 	}
 }

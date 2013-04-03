@@ -11,7 +11,7 @@
 
          
             <Button 
-                android:id="@+id/main_button_search_type"
+                android:id="@+id/main_button_switch"
                 android:layout_width="31.3dp"
                 android:layout_height="25.3dp"
                 android:layout_marginLeft="7dp"

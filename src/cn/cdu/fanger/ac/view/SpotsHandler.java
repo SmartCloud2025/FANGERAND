@@ -1,6 +1,7 @@
 package cn.cdu.fanger.ac.view;
 
 import cn.cdu.fanger.activity.ListMainActivity;
+import cn.cdu.fanger.activity.MapMainActivity;
 import cn.cdu.fanger.constant.Task;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +26,10 @@ public class SpotsHandler extends Handler {
 			case Task.GET_SPOT_ITEM_IMG:
 				resultAc = (IBaseActivity) SpotsService.getActivityByName("ListMainActivity");
 				resultAc.refresh(ListMainActivity.FRESH_ICON_DATA);
+				break;
+			case Task.GET_MAP_SPOT_LIST:
+				resultAc = (IBaseActivity) SpotsService.getActivityByName("MapMainActivity");
+				resultAc.refresh(MapMainActivity.MSG_LIST_SPOTS,msg.obj);
 				break;
 			default:
 				break;				
