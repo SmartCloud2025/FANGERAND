@@ -38,6 +38,7 @@ import android.view.View;
 
 @SuppressLint("UseSparseArrays")
 public class SpotsService extends Service implements Runnable{
+	
 	protected static final String TAG = SpotsService.class.getSimpleName();
 
 	public static ArrayList<Activity> allActivity = new ArrayList<Activity>();
@@ -87,8 +88,9 @@ public class SpotsService extends Service implements Runnable{
 					allspotIcon.put(ssid, bmd);
 					break;	
 				case Task.GET_MAP_SPOT_LIST:
-					//TODO
-					msg.obj = this.requestSpots(task);
+					List<AndrSpot> resultData_map = this.requestSpots(task);
+					this.publishGetIcon(resultData_map);
+					msg.obj = resultData_map;
 					break;
 				default:
 					break;
@@ -171,10 +173,12 @@ public class SpotsService extends Service implements Runnable{
 	private List<AndrSpot> requestSpots(Task task){
 		int pageNow = (Integer) task.getTaskParam().get("pagenow");
 		int pageSize = (Integer) task.getTaskParam().get("pagesize");
+		String type = (String) task.getTaskParam().get("type");
 		try{
-			String url = ServerUrl.spotList+pageNow+","+pageSize;
 			
-			System.out.println("---"+url);
+			String url = ServerUrl.spotList+"?currentPage="+pageNow+"&pageSize="+pageSize+"&type="+type;
+			
+			Log.i(TAG,"@@@------------"+url);
 			
 			// Set the Accept header for "application/json"
 			HttpHeaders requestHeaders = new HttpHeaders();
@@ -210,9 +214,9 @@ public class SpotsService extends Service implements Runnable{
 	///////////////////////////////////
 	public static void exitApp(Activity context) {// 退出所有Activity
 		for (int i = 0; i < allActivity.size(); i++) {
-			((Activity) allActivity.get(i)).finish();
+			((Activity) allActivity.get(i)).finish();//销毁所有activity
 		}
-		allActivity.clear();
+		allActivity.clear();//释放list
 		// 退出Service
 		context.stopService(new Intent("cn.cdu.fanger.ac.view.SpotsService"));
 	}

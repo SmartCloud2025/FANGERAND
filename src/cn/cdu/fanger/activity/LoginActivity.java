@@ -102,7 +102,7 @@ public class LoginActivity extends AbstractAsyncActivity {
 			Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 			// go to main page
 			
-			startActivity(new Intent(LoginActivity.this, MapMainActivity.class));//ListMainActivity
+			startActivity(new Intent(LoginActivity.this, MainActivity.class));//ListMainActivity
 			
 		} else {
 			Toast.makeText(this, "I got null, something happened!", Toast.LENGTH_LONG).show();

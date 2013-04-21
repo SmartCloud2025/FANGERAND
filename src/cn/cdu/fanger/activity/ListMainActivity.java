@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import cn.cdu.fanger.ac.view.IBaseActivity;
 import cn.cdu.fanger.ac.view.IMenuActivity;
 import cn.cdu.fanger.ac.view.SpotsService;
@@ -22,12 +25,17 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 	public final static int FRESH_ICON_DATA = 3;
 	
 	ListView listView;
-	int pageSize=3,pageNow=1;
+	int pageSize=10,pageNow=0;
 	private Button swithBtn;
+	
+	static String search_type = "createdAt";//缺省
+	static Context context;
 	
 	@Override
 	protected void onCreateMethod() {
 		setContentView(R.layout.activity_main_list);
+		context = ListMainActivity.this;
+		
 		listView = (ListView) findViewById(R.id.main_listview);
 		SpotsService.allActivity.add(this);//put the current install to service
 		
@@ -53,9 +61,11 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("pagenow", (Integer) pageNow);
 		map.put("pagesize", (Integer) pageSize);
+		map.put("type", search_type);
 		
 		Task task = new Task(Task.GET_SPOT_LIST, map);
 		SpotsService.newTask(task);
+		
 		this.showLoadingProgressDialog();
 	}
 
@@ -89,7 +99,41 @@ public class ListMainActivity extends IMenuActivity implements IBaseActivity{
 		swithBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(ListMainActivity.this, MapMainActivity.class));
+				//startActivity(new Intent(ListMainActivity.this, MapMainActivity.class));
+				//打开一个alert选择搜索类型
+				final String[] type = ListMainActivity.this.getResources().getStringArray(R.array.search_type);
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("搜索类型")
+						.setIcon(R.drawable.ic_launcher)
+						.setSingleChoiceItems(type, 0,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										switch (which) {
+										case 0:
+											search_type = "createdAt";//最新
+											break;
+										case 1:
+											search_type = "downloadCount";//下载最多
+											break;
+										case 2:
+											search_type = "commentsCount";//评论最多
+											break;
+										case 3:
+											search_type = "likeCount";//最受欢迎
+											break;
+
+										default:
+											break;
+										}
+										
+										
+										Toast.makeText(context, type[which],
+												Toast.LENGTH_SHORT).show();
+										
+									}
+								}).setPositiveButton("确定", null).create().show();
 			}
 		});
 	}

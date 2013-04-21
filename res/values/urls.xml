@@ -5,4 +5,6 @@
     <string name="rss_feed_url">http://blog.springsource.com/feed</string>
     <string name="atom_feed_url">https://jira.springframework.org/plugins/servlet/streams</string>
 
+    
+    
 </resources>

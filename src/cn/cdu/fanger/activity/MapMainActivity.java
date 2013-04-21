@@ -38,7 +38,9 @@ import com.google.android.maps.OverlayItem;
 
 public class MapMainActivity extends AbstractAsyncMapActivity  implements IBaseActivity, LocationCallBack ,OnClickListener{
 	protected static final String TAG = MapMainActivity.class.getSimpleName();
-	private int pageSize=4,pageNow=1;
+	
+	private int pageSize=10,pageNow=0;
+	static String search_type = "createdAt";//缺省
 	
 	private MapView mapView;
 	private MapController mapCtrl;
@@ -64,6 +66,7 @@ public class MapMainActivity extends AbstractAsyncMapActivity  implements IBaseA
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_map);
 		mapView = (MapView) findViewById(R.id.MapView01);
+		
 		SpotsService.allActivity.add(this);
 		
 		View topBar = findViewById(R.id.map_top_view);
@@ -203,6 +206,7 @@ public class MapMainActivity extends AbstractAsyncMapActivity  implements IBaseA
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("pagenow", (Integer) pageNow);
 		map.put("pagesize", (Integer) pageSize);
+		map.put("type", search_type);
 		
 		Task task = new Task(Task.GET_MAP_SPOT_LIST, map);
 		SpotsService.newTask(task);

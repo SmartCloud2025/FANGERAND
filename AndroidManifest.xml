@@ -31,6 +31,7 @@
             
         </activity>
         
+        <activity android:name="cn.cdu.fanger.activity.MainActivity" />
         <activity android:name="cn.cdu.fanger.activity.ListMainActivity" />
         <activity android:name="cn.cdu.fanger.activity.MapMainActivity" />
         <activity android:name="cn.cdu.fanger.activity.RestActivity" />

@@ -16,17 +16,7 @@
 
 
 	
-     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="#f6f6f6" >
-
-        <!-- 在这里添加内容 -->
-		<RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="#f6f6f6" 
-        android:layout_marginBottom="48dp">
+    
        
        <ListView
             android:id="@+id/main_listview"
@@ -36,15 +26,5 @@
 	    	android:dividerHeight="1.0dip">
         </ListView>
         
-        </RelativeLayout>
-        
-	        <!-- 底部菜单栏 -->
-	        <include
-	            android:id="@+id/main_buttom_view"
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            layout="@layout/bottom_bar" />
-        <!-- 底部菜单栏结束 -->
-    	
-	</RelativeLayout>
+       
 </LinearLayout>
